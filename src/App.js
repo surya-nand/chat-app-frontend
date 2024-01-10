@@ -1,7 +1,11 @@
-import './App.css';
+import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Homepage from './components/HomePage/homePage';
+import PrivateRoute from "./middleware/ProtectedRoute";
+import Homepage from "./components/HomePage/homePage";
+import ChatPage from "./components/ChatPage/chatPage";
 
 function App() {
   return (
@@ -9,9 +13,15 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
-            <Route exact path="/" element={<Homepage/>}></Route>
+            <Route exact path="/" element={<Homepage />}></Route>
+            <Route
+              exact
+              path="/chat"
+              element={<PrivateRoute element={<ChatPage />} />}
+            ></Route>
           </Routes>
         </Router>
+        <ToastContainer />
       </div>
     </ChakraProvider>
   );

@@ -3,8 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 import "../HomePage/homepage.modules.css";
 import { useNavigate } from "react-router-dom";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const BASE_URL = "http://localhost:5000";
 
 function Homepage() {
   const navigate = useNavigate();
@@ -13,12 +15,12 @@ function Homepage() {
     email: "",
     password: "",
     confirmPassword: "",
-    picture: "",
   });
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+  localStorage.setItem("token", "");
   const [signupActive, setSignupActive] = useState(true);
 
   const handleRegisterInputChange = (event) => {
@@ -50,48 +52,43 @@ function Homepage() {
   const handleGuestCredentialsClick = (e) => {
     e.preventDefault();
     setLoginData({
-        email: "guest123@gmail.com",
-        password:"123456"
-    })
-  }
-  const handleLoginFormSubmit = () => {};
-  const handleRegisterFormSubmit = () => {};
-  //   const handleLoginFormSubmit = async (event) => {
-  //     event.preventDefault();
-  //     try {
-  //       const response = await axios.post(
-  //         `${BASE_URL}/api/users/login`,
-  //         loginData
-  //       );
-  //       toast.info(response.data.message);
-  //       if (response.data.message === "Login Successful") {
-  //         localStorage.setItem("token",response.data.token)
-  //         navigate("/dashboard", {
-  //           state: {
-  //             loggedInUser: response.data.userDetails,
-  //           },
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+      email: "guest123@gmail.com",
+      password: "12345678",
+    });
+  };
+  const handleLoginFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/users/login`,
+        loginData
+      );
+      console.log(response.data);
+      toast.info(response.data.message);
+      if (response.data.message === "Login Successful") {
+        localStorage.setItem("token", response.data.token);
+        navigate("/chat");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const handleRegisterFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/users/register`,
+        registerData
+      );
+      toast.info(response.data.message);
+      if (response.data.message === "Registration Successful. Please Login") {
+        setSignupActive(!signupActive);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-  //   const handleRegisterFormSubmit = async (event) => {
-  //     event.preventDefault();
-  //     try {
-  //       const response = await axios.post(
-  //         `${BASE_URL}/api/users/register`,
-  //         registerData
-  //       );
-  //       toast.info(response.data.message);
-  //       if (response.data.message === "Registration Successful. Please Login") {
-  //         setSignupActive(!signupActive);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
   return (
     <div className="homepage-container">
       <div className="homepage">
@@ -121,8 +118,8 @@ function Homepage() {
                   <input
                     className="user-name"
                     type="name"
-                    name="username"
-                    value={registerData.username}
+                    name="name"
+                    value={registerData.name}
                     onChange={handleRegisterInputChange}
                     required
                   ></input>
@@ -145,7 +142,7 @@ function Homepage() {
                     type="password"
                     name="password"
                     value={registerData.password}
-                    minLength={6}
+                    minLength={8}
                     onChange={handleRegisterInputChange}
                     required
                   ></input>
@@ -158,6 +155,7 @@ function Homepage() {
                     name="confirmPassword"
                     value={registerData.confirmPassword}
                     onChange={handleRegisterInputChange}
+                    minLength={8}
                     required
                   ></input>
                 </div>
@@ -192,12 +190,15 @@ function Homepage() {
                   ></input>
                 </div>
                 <div className="login-guest-buttons-group">
-                <button type="submit" className="login-submit-button">
-                  Log In
-                </button>
-                <button  className="guest-credentials-button" onClick={handleGuestCredentialsClick}>
-                  Guest Credentials
-                </button>
+                  <button type="submit" className="login-submit-button">
+                    Log In
+                  </button>
+                  <button
+                    className="guest-credentials-button"
+                    onClick={handleGuestCredentialsClick}
+                  >
+                    Guest Credentials
+                  </button>
                 </div>
               </div>
             </form>
