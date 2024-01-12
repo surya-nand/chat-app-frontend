@@ -21,6 +21,7 @@ function Homepage() {
     password: "",
   });
   localStorage.setItem("userInfo", "");
+  localStorage.setItem("token", "");
   const [signupActive, setSignupActive] = useState(true);
 
   const handleRegisterInputChange = (event) => {
@@ -67,6 +68,7 @@ function Homepage() {
       toast.info(response.data.message);
       if (response.data.message === "Login Successful") {
         localStorage.setItem("userInfo",  JSON.stringify(response.data.userDetails));
+        localStorage.setItem("token",response.data.token)
         navigate("/chat");
       }
     } catch (error) {

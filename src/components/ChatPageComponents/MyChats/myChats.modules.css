@@ -1,0 +1,41 @@
+.my-chats {
+  background-color: rgb(255, 255, 255);
+  min-width: 40vw;
+  max-width: 42vw;
+  max-height: 80vh;
+  margin-top: 1.5%;
+  margin-left: 3%;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.title-and-group-chat-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.5vw;
+  padding-top: 5%;
+}
+.title-and-group-chat-container button {
+  background-color: rgb(177, 203, 230);
+  border: none;
+  border-radius: 10px;
+  min-height: 5vh;
+  min-width: 15vw;
+}
+.loggedInUser-chats {
+  margin-top: 10%;
+  max-width: 90%;
+  margin-left: 5%;
+  border-radius: 10px;
+  
+}
+.each-chat-container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 3%;
+    border-radius: 10px;
+    background-color:hsl(180, 40%, 92%);
+    min-height: 10vh;
+    cursor: pointer;
+    margin-right: 2%;
+}

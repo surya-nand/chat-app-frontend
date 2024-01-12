@@ -1,0 +1,81 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 8vh;
+  min-width: 100vw;
+  background: #ffff;
+}
+.search-user {
+  margin-left: 3%;
+}
+
+.search-user button {
+  background-color: rgb(177, 203, 230);
+  border: none;
+  border-radius: 10px;
+  min-height: 5vh;
+  min-width: 15vw;
+  font-size: 1.2vw;
+}
+.application-title {
+  margin-left: -11%;
+  font-size: 1.6vw;
+  font-weight: 700;
+}
+.user-notifications-profile {
+  margin-right: 3%;
+}
+
+.search-container {
+  position: absolute;
+  top: 0;
+  min-width: 22vw;
+  max-width: 22vw;
+  min-height: 100vh;
+  background-color: hsl(180, 37%, 84%);
+}
+.search-container-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8.5%;
+  margin-bottom: 6%;
+  font-size: 1.2vw;
+  font-weight: 500;
+  padding-bottom: 0.6vw;
+  border-bottom: 1px solid hsl(180, 12%, 74%); 
+}
+.search-title{
+    padding-left: 10%;
+    font-size: 1.5vw;  
+}
+
+.close-search-users{
+    padding-left: 35%;
+    font-size: 2vw;
+    padding-bottom: 1%;
+    cursor: pointer;
+    
+}
+.search-container-input-field{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.search-container-input-field input {
+  text-align: center;
+  background-color: hsl(184, 29%, 72%);
+  border: none;
+  border-radius: 10px;
+  min-height: 5vh;
+  min-width: 15vw;
+  font-size: 1.2vw;
+}
+.search-container-input-field Button{
+  width: 1vw;
+  min-height: 5vh;
+  font-size: 1.2vw;
+}
