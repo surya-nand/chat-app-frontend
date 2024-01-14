@@ -64,15 +64,22 @@ function Homepage() {
         `${BASE_URL}/api/users/login`,
         loginData
       );
-      console.log(response.data);
       toast.info(response.data.message);
       if (response.data.message === "Login Successful") {
-        localStorage.setItem("userInfo",  JSON.stringify(response.data.userDetails));
-        localStorage.setItem("token",response.data.token)
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify(response.data.userDetails)
+        );
+        localStorage.setItem("token", response.data.token);
         navigate("/chat");
       }
     } catch (error) {
-      console.log(error.message);
+      if (error.response && error.response.status === 400) {
+        toast.error("Invalid email or password");
+      } else {
+        console.error("Error during login:", error.message);
+        toast.error("An error occurred during login. Please try again.");
+      }
     }
   };
   const handleRegisterFormSubmit = async (event) => {

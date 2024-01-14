@@ -1,12 +1,13 @@
 .my-chats {
   background-color: rgb(255, 255, 255);
-  min-width: 40vw;
-  max-width: 42vw;
-  max-height: 80vh;
+  min-width: 30vw;
+  max-width: 35vw;
+  height: 80vh;
   margin-top: 1.5%;
   margin-left: 3%;
   border-radius: 10px;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 .title-and-group-chat-container {
   display: flex;
@@ -27,7 +28,6 @@
   max-width: 90%;
   margin-left: 5%;
   border-radius: 10px;
-  
 }
 .each-chat-container{
     display: flex;
@@ -38,4 +38,10 @@
     min-height: 10vh;
     cursor: pointer;
     margin-right: 2%;
+    padding-left: 4%;
+}
+
+.each-chat-container.active{
+  background-color: rgb(129, 208, 208);
+  color: #ffff;
 }

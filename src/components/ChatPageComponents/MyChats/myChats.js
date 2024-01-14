@@ -1,34 +1,41 @@
 import React, { useEffect, useState } from "react";
 import "../MyChats/myChats.modules.css";
-import axios from 'axios';
+import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingSkeleton from "../../../miscellaneous/loadingSkeleton";
+import { useChat } from "../../../context/chatContext";
+import getSender from "../../../miscellaneous/chatLogics";
+import { json } from "react-router-dom";
 const BASE_URL = "http://localhost:5000";
 
-
 const MyChats = () => {
-  const [chats, setChats] = useState([])
-  const loggedInUser = JSON.parse(localStorage.getItem('userInfo'))
+  const { chats, setChats } = useChat();
+  const [loading, setLoading] = useState(false);
+  const { accessedChat, setAccessedChat } = useChat();
   const token = localStorage.getItem("token");
-  const fetchChats = async() => {
-     try{
-        const config = {
+  const loggedInUser = JSON.parse(localStorage.getItem('userInfo'));
+  const handleChatSelect = (chat) => {
+   setAccessedChat(chat)
+  }
+  const fetchChats = async () => {
+    try {
+      setLoading(true);
+      const config = {
         headers: {
           Authorization: token,
-      }
-     }
-     const response = await axios.get(`${BASE_URL}/api/chat`,config);
-     setChats(response.data.chats)
-  }
-  catch(error){
-    toast.error("Error occurred, try again")
-  }
-}
-console.log(chats)
-
+        },
+      };
+      const response = await axios.get(`${BASE_URL}/api/chat`, config);
+      setChats(response.data.chats);
+      setLoading(false);
+    } catch (error) {
+      toast.error("Error occurred, try again");
+    }
+  };
   useEffect(() => {
-   fetchChats();
-  },[])
+    fetchChats();
+  }, []);
   return (
     <div className="my-chats">
       <div className="title-and-group-chat-container">
@@ -36,14 +43,16 @@ console.log(chats)
         <button>New Group Chat +</button>
       </div>
       <div className="loggedInUser-chats">
-        {
-          chats.map((chat)=> (
-            <div key={chat._id} className="each-chat-container">
-              <h1>{chat.chatName}</h1>
+        {loading ? (
+          <LoadingSkeleton />
+        ) : (
+          chats.map((chat) => (
+            <div key={chat._id} onClick={() => handleChatSelect(chat)} className={`each-chat-container ${chat._id === accessedChat?._id ? 'active' : ''}`}>
+              <h1>{!chat.isGroupChat ? getSender(loggedInUser, chat.users) : chat.chatName}</h1>
               <p>{chat.latestMessage}</p>
             </div>
           ))
-        }
+        )}
       </div>
     </div>
   );

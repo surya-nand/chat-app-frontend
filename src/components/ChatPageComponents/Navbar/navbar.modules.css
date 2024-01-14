@@ -34,6 +34,7 @@
   max-width: 22vw;
   min-height: 100vh;
   background-color: hsl(180, 37%, 84%);
+  z-index: 1;
 }
 .search-container-title {
   display: flex;

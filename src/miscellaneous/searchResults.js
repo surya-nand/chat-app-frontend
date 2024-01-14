@@ -3,12 +3,15 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../miscellaneous/searchResults.modules.css";
+import { useChat } from "../context/chatContext";
 
 const BASE_URL = "http://localhost:5000";
 
 const SearchResults = ({ searchResults }) => {
   const token = localStorage.getItem("token");
-  const [accessedChat, setAccessedChat] = useState();
+  const {setIsSearchContainerOpen} = useChat();
+  const { accessedChat, setAccessedChat } = useChat();
+  const { chats, setChats } = useChat();
   const handleAccessChat = async (userId) => {
     try {
       const config = {
@@ -22,12 +25,17 @@ const SearchResults = ({ searchResults }) => {
         { userId },
         config
       );
+      setIsSearchContainerOpen(false);
+      toast.info("chat found")
+      if (!chats.find((chat) => chat._id === response.data.details._id)) {
+        setChats([response.data.details, ...chats]);
+      }
       setAccessedChat(response.data.details);
     } catch (error) {
       toast.info("Server Error");
     }
-    
   };
+  console.log(accessedChat);
   return (
     <div className="search-results-container">
       {searchResults.map((user) => (

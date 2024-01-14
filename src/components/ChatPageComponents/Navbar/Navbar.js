@@ -1,5 +1,5 @@
 import { Button, Tooltip } from "@chakra-ui/react";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import React from "react";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
@@ -18,15 +18,15 @@ import UserProfileModal from "../UserProfileModal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Navbar/navbar.modules.css";
+import { useChat } from "../../../context/chatContext";
 
 const BASE_URL = "http://localhost:5000";
 
 const Navbar = () => {
   const [search, setSearch] = useState("");
-  const [isSearchContainerOpen, setIsSearchContainerOpen] = useState(false);
+  const { isSearchContainerOpen, setIsSearchContainerOpen } = useChat();
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [loadingChat, setLoadingChat] = useState(false);
   const user = JSON.parse(localStorage.getItem("userInfo"));
   const token = localStorage.getItem("token");
 
@@ -48,7 +48,7 @@ const Navbar = () => {
 
   const handleCloseSearchContainer = () => {
     setIsSearchContainerOpen(false);
-    setSearchResults([])
+    setSearchResults([]);
     setSearch("");
   };
 
@@ -134,8 +134,11 @@ const Navbar = () => {
             <Button onClick={handleFetchSearchResultsButtonClick}>Go</Button>
           </div>
           <div className="search-results-field">
-
-            {loading ? (<LoadingSkeleton/>) : <SearchResults searchResults={searchResults} />}
+            {loading ? (
+              <LoadingSkeleton />
+            ) : (
+              <SearchResults searchResults={searchResults} />
+            )}
           </div>
         </div>
       )}
