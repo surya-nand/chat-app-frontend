@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,7 +9,7 @@ const BASE_URL = "http://localhost:5000";
 
 const SearchResults = ({ searchResults }) => {
   const token = localStorage.getItem("token");
-  const {setIsSearchContainerOpen} = useChat();
+  const { setIsSearchContainerOpen } = useChat();
   const { accessedChat, setAccessedChat } = useChat();
   const { chats, setChats } = useChat();
   const handleAccessChat = async (userId) => {
@@ -26,7 +26,7 @@ const SearchResults = ({ searchResults }) => {
         config
       );
       setIsSearchContainerOpen(false);
-      toast.info("chat found")
+      toast.info("chat found");
       if (!chats.find((chat) => chat._id === response.data.details._id)) {
         setChats([response.data.details, ...chats]);
       }
@@ -38,7 +38,7 @@ const SearchResults = ({ searchResults }) => {
   console.log(accessedChat);
   return (
     <div className="search-results-container">
-      {searchResults.map((user) => (
+      {searchResults?.slice(0, 6).map((user) => (
         <div
           onClick={() => handleAccessChat(user._id)}
           key={user._id}

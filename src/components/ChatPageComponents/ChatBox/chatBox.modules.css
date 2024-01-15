@@ -39,5 +39,11 @@
     font-weight: 500;
 }
 .chat-arena{
+   margin: 2%;
+   height: 80%;
+   background-color: rgb(227, 236, 233);
+}
+
+.chat-arena input{
 
 }

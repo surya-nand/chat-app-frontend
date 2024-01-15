@@ -5,8 +5,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSkeleton from "../../../miscellaneous/loadingSkeleton";
 import { useChat } from "../../../context/chatContext";
-import getSender from "../../../miscellaneous/chatLogics";
-import { json } from "react-router-dom";
+import {getSender}
+ from "../../../miscellaneous/chatLogics";
+import GroupChatModal from "../createGroupModal";
+
 const BASE_URL = "http://localhost:5000";
 
 const MyChats = () => {
@@ -40,15 +42,27 @@ const MyChats = () => {
     <div className="my-chats">
       <div className="title-and-group-chat-container">
         <p>My Chats</p>
-        <button>New Group Chat +</button>
+        <GroupChatModal>
+          <button>New Group Chat +</button>
+        </GroupChatModal>
       </div>
       <div className="loggedInUser-chats">
         {loading ? (
           <LoadingSkeleton />
         ) : (
           chats.map((chat) => (
-            <div key={chat._id} onClick={() => handleChatSelect(chat)} className={`each-chat-container ${chat._id === accessedChat?._id ? 'active' : ''}`}>
-              <h1>{!chat.isGroupChat ? getSender(loggedInUser, chat.users) : chat.chatName}</h1>
+            <div
+              key={chat._id}
+              onClick={() => handleChatSelect(chat)}
+              className={`each-chat-container ${
+                chat._id === accessedChat?._id ? "active" : ""
+              }`}
+            >
+              <h1>
+                {!chat.isGroupChat
+                  ? getSender(loggedInUser, chat.users)
+                  : chat.chatName}
+              </h1>
               <p>{chat.latestMessage}</p>
             </div>
           ))

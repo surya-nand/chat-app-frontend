@@ -3,6 +3,8 @@ import "../ChatBox/chatBox.modules.css";
 import { useChat } from "../../../context/chatContext";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import UserProfileModal from "../UserProfileModal";
+import {getSender} from "../../../miscellaneous/chatLogics";
+
 
 const ChatBox = () => {
   const { accessedChat } = useChat();
@@ -10,19 +12,18 @@ const ChatBox = () => {
   const handleOpenUserProfile = () => {
     setIsUserProfileOpen(true);
   };
-  console.log(accessedChat)
+    const loggedInUser = JSON.parse(localStorage.getItem("userInfo"));
   return (
     <>
       <div className="chat-box">
         {accessedChat ? (
           <>
             <div className="chat-name-container">
-              <p>{accessedChat.chatName}</p>
+              <p>{accessedChat.isGroupChat ? accessedChat.chatName.toUpperCase() : getSender(loggedInUser, accessedChat.users).toUpperCase()}</p>
               <button onClick={handleOpenUserProfile}>
                 <InfoOutlineIcon />
               </button>
             </div>
-
             <div className="chat-arena">
               <input placeholder="Enter a message"></input>
             </div>

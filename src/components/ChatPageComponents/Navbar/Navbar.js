@@ -75,7 +75,9 @@ const Navbar = () => {
       } else {
         toast.error(response.data.error);
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Error occurred, try again")
+    }
   };
   return (
     <>
