@@ -9,6 +9,10 @@
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
+
+.my-chats::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
 .title-and-group-chat-container {
   display: flex;
   align-items: center;

@@ -6,8 +6,7 @@
   margin-top: 1.5%;
   margin-left: 3%;
   border-radius: 10px;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+
 }
 .chat-name-container{
    display: flex;
@@ -41,9 +40,47 @@
 .chat-arena{
    margin: 2%;
    height: 80%;
+   border-radius: 10px;
    background-color: rgb(227, 236, 233);
 }
 
-.chat-arena input{
-
+.chat-arena {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
+
+.enter-message-area {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.enter-message-area input {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding-left: 1.5%;
+  height: 5vh;
+}
+.messages-tab{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  justify-content: flex-end;
+  scrollbar-width: none;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+
+.messages-tab::-webkit-scrollbar {
+  display: none; 
+}
+
+.chat-box::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+

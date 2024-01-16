@@ -5,21 +5,21 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSkeleton from "../../../miscellaneous/loadingSkeleton";
 import { useChat } from "../../../context/chatContext";
-import {getSender}
- from "../../../miscellaneous/chatLogics";
+import { getSender } from "../../../miscellaneous/chatLogics";
 import GroupChatModal from "../createGroupModal";
 
 const BASE_URL = "http://localhost:5000";
 
 const MyChats = () => {
   const { chats, setChats } = useChat();
+  const { refreshChats } = useChat();
   const [loading, setLoading] = useState(false);
   const { accessedChat, setAccessedChat } = useChat();
   const token = localStorage.getItem("token");
-  const loggedInUser = JSON.parse(localStorage.getItem('userInfo'));
+  const loggedInUser = JSON.parse(localStorage.getItem("userInfo"));
   const handleChatSelect = (chat) => {
-   setAccessedChat(chat)
-  }
+    setAccessedChat(chat);
+  };
   const fetchChats = async () => {
     try {
       setLoading(true);
@@ -37,7 +37,7 @@ const MyChats = () => {
   };
   useEffect(() => {
     fetchChats();
-  }, []);
+  }, [refreshChats]);
   return (
     <div className="my-chats">
       <div className="title-and-group-chat-container">
@@ -63,7 +63,7 @@ const MyChats = () => {
                   ? getSender(loggedInUser, chat.users)
                   : chat.chatName}
               </h1>
-              <p>{chat.latestMessage}</p>
+              {/* <p>{chat.latestMessage}</p> */}
             </div>
           ))
         )}

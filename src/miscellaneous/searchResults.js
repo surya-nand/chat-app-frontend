@@ -10,7 +10,7 @@ const BASE_URL = "http://localhost:5000";
 const SearchResults = ({ searchResults }) => {
   const token = localStorage.getItem("token");
   const { setIsSearchContainerOpen } = useChat();
-  const { accessedChat, setAccessedChat } = useChat();
+  const { setAccessedChat } = useChat();
   const { chats, setChats } = useChat();
   const handleAccessChat = async (userId) => {
     try {
@@ -35,7 +35,6 @@ const SearchResults = ({ searchResults }) => {
       toast.info("Server Error");
     }
   };
-  console.log(accessedChat);
   return (
     <div className="search-results-container">
       {searchResults?.slice(0, 6).map((user) => (

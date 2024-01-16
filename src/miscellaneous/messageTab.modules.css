@@ -1,0 +1,22 @@
+.reactions-container {
+  position: relative;
+  bottom: 0; /* Adjust this based on your design */
+  left: 0;
+  width: fit-content;
+  display: flex;
+  justify-content: space-around; /* Adjust as needed */
+  align-items: center;
+  background-color: rgb(208, 244, 239); /* Set background color */
+  padding: 5px;
+  border-top: 1px solid #ddd; /* Add a border at the top */
+  z-index: 1; /* Ensure it appears above other elements */
+  border: none;
+  border-radius: 20px;
+}
+
+/* Add styles for your reaction buttons */
+.reactions-container button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
