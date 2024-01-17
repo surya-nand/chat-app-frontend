@@ -60,4 +60,25 @@ I have used express(Node.js Framework) to build this server
 6. **Testing**: 
     ```bash
     1. Manually tested each middleware,routes and controllers using postman
+    ```
+## 🚀 Further Development
+
+1. **Connecting web socket**: 
+    ```bash
+   1. connecting web socket to push real time message notifications
+   2. Real time update of messages
+    ```
+2. **Admin**: 
+    ```bash
+    1. Admins can see which group an user belongs and edit them from dashboard
+    ```
+3. **Reactions animation**: upgrading from basic reactions to animate reactions 
+    ```bash
+    1. On hovering on reaction a users can see which users have reacted to which message and type of reaction
+    ``` 
+    
+4. **Further UI Development**: 
+    ```bash
+    1. Further UI interface developments to make app more user friendly and responsive
+    ```
     ``` 
