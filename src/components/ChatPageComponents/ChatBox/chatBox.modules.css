@@ -6,6 +6,7 @@
   margin-top: 1.5%;
   margin-left: 3%;
   border-radius: 10px;
+  font-family: Poppins;
 
 }
 .chat-name-container{
@@ -13,9 +14,11 @@
    justify-content: space-between;
    align-items: center;
    height: 10vh;
+   font-family: Poppins;
 }
 .chat-name-container p{
     padding-left: 5%;
+    font-family: Poppins;
 }
 .chat-name-container button{
     margin-right: 5%;
@@ -36,6 +39,7 @@
     height: 100%;
     font-size: 2.2vw;
     font-weight: 500;
+    font-family: Poppins;
 }
 .chat-arena{
    margin: 2%;
@@ -81,6 +85,6 @@
 }
 
 .chat-box::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar */
+  display: none;
 }
 

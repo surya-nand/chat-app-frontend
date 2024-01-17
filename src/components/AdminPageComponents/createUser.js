@@ -85,7 +85,7 @@ const CreateUser = () => {
                     name="name"
                     value={registerData.name}
                     onChange={handleRegisterInputChange}
-                    placeholder="Enter your Name"
+                    placeholder="Enter user Name"
                     required
                   ></input>
                 </div>
@@ -97,7 +97,7 @@ const CreateUser = () => {
                     name="email"
                     value={registerData.email}
                     onChange={handleRegisterInputChange}
-                    placeholder="Enter your Email"
+                    placeholder="Enter user Email"
                     required
                   ></input>
                 </div>
@@ -109,7 +109,7 @@ const CreateUser = () => {
                     name="picture"
                     value={registerData.picture}
                     onChange={handleRegisterInputChange}
-                    placeholder="Enter your Picture Link"
+                    placeholder="Enter user Picture Link"
                     required
                   ></input>
                 </div>
@@ -122,7 +122,7 @@ const CreateUser = () => {
                     value={registerData.password}
                     minLength={8}
                     onChange={handleRegisterInputChange}
-                    placeholder="Enter your Password"
+                    placeholder="Enter user Password"
                     required
                   ></input>
                 </div>
