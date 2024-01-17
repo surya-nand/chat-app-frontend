@@ -63,9 +63,13 @@ const MyChats = () => {
                   ? getSender(loggedInUser, chat.users)
                   : chat.chatName}
               </h1>
-              {/* <p>{chat.latestMessage}</p> */}
             </div>
           ))
+        )}
+        {chats.length < 1 && (
+          <div>
+            Your chats will appear here
+          </div>
         )}
       </div>
     </div>

@@ -7,6 +7,7 @@ export const ChatProvider = ({ children }) => {
   const [isSearchContainerOpen, setIsSearchContainerOpen] = useState(false);
   const [chats, setChats] = useState([]);
   const [refreshChats, setRefreshChats] = useState('')
+  const [refreshUsersList, setRefreshUsersList] = useState(false)
 
   return (
     <ChatContext.Provider
@@ -18,7 +19,9 @@ export const ChatProvider = ({ children }) => {
         isSearchContainerOpen,
         setIsSearchContainerOpen,
         refreshChats,
-        setRefreshChats
+        setRefreshChats,
+        refreshUsersList,
+        setRefreshUsersList
       }}
     >
       {children}

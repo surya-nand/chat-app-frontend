@@ -6,12 +6,20 @@
 }
 
 .search-results-user-picture{
-    max-width: 15%;
-    max-height: 15%;
+    width: 3vw;
+    height: 3vw;
     margin-left: 3%;
+    margin-left: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .search-results-user-picture img{
-    border-radius: 100px;
+   width: 100%;
+    height: auto;
+    border-radius: 100%;
 }
 .each-user-container{
     display: flex;

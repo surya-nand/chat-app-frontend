@@ -10,27 +10,13 @@ const BASE_URL = "http://localhost:5000";
 
 function Homepage() {
   const navigate = useNavigate();
-  const [registerData, setRegisterData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
   localStorage.setItem("userInfo", "");
   localStorage.setItem("token", "");
-  const [signupActive, setSignupActive] = useState(true);
-
-  const handleRegisterInputChange = (event) => {
-    const { name, value } = event.target;
-    setRegisterData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const [signupActive, setSignupActive] = useState(false);
   const handleLoginInputChange = (event) => {
     const { name, value } = event.target;
     setLoginData((prevState) => ({
@@ -39,15 +25,22 @@ function Homepage() {
     }));
   };
 
-  const handleSignupActiveButton = () => {
-    if (!signupActive) {
-      setSignupActive(!signupActive);
-    }
-  };
   const handleLoginActiveButton = () => {
     if (signupActive) {
       setSignupActive(!signupActive);
     }
+  };
+
+  const handleSignupActiveButton = () => {
+    toast.info("Contact admin for registration")
+  }
+
+  const handleAdminCredentialsClick = (e) => {
+    e.preventDefault();
+    setLoginData({
+      email: "admin123@gmail.com",
+      password: "12345678",
+    });
   };
 
   const handleGuestCredentialsClick = (e) => {
@@ -65,7 +58,20 @@ function Homepage() {
         loginData
       );
       toast.info(response.data.message);
-      if (response.data.message === "Login Successful") {
+      if (
+        response.data.message === "Login Successful" &&
+        response.data.userRole === "admin"
+      ) {
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify(response.data.userDetails)
+        );
+        localStorage.setItem("token", response.data.token);
+        navigate("/admin");
+      } else if (
+        response.data.message === "Login Successful" &&
+        response.data.userRole === "user"
+      ) {
         localStorage.setItem(
           "userInfo",
           JSON.stringify(response.data.userDetails)
@@ -80,21 +86,6 @@ function Homepage() {
         console.error("Error during login:", error.message);
         toast.error("An error occurred during login. Please try again.");
       }
-    }
-  };
-  const handleRegisterFormSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/api/users/register`,
-        registerData
-      );
-      toast.info(response.data.message);
-      if (response.data.message === "Registration Successful. Please Login") {
-        setSignupActive(!signupActive);
-      }
-    } catch (error) {
-      console.log(error.message);
     }
   };
 
@@ -120,59 +111,7 @@ function Homepage() {
         </div>
         <div className="user-details">
           {signupActive ? (
-            <form method="POST" onSubmit={handleRegisterFormSubmit}>
-              <div className="registration-details">
-                <div className="username-input">
-                  <p>Name</p>
-                  <input
-                    className="user-name"
-                    type="name"
-                    name="name"
-                    value={registerData.name}
-                    onChange={handleRegisterInputChange}
-                    required
-                  ></input>
-                </div>
-                <div className="email-input">
-                  <p>Email</p>
-                  <input
-                    className="user-email"
-                    type="email"
-                    name="email"
-                    value={registerData.email}
-                    onChange={handleRegisterInputChange}
-                    required
-                  ></input>
-                </div>
-                <div className="password-input">
-                  <p>Password</p>
-                  <input
-                    className="user-password"
-                    type="password"
-                    name="password"
-                    value={registerData.password}
-                    minLength={8}
-                    onChange={handleRegisterInputChange}
-                    required
-                  ></input>
-                </div>
-                <div className="confirm-password-input">
-                  <p>Confirm Password</p>
-                  <input
-                    className="user-confirm-password"
-                    type="password"
-                    name="confirmPassword"
-                    value={registerData.confirmPassword}
-                    onChange={handleRegisterInputChange}
-                    minLength={8}
-                    required
-                  ></input>
-                </div>
-                <button type="submit" className="signup-submit-button">
-                  Sign up
-                </button>
-              </div>
-            </form>
+            ''
           ) : (
             <form method="POST" onSubmit={handleLoginFormSubmit}>
               <div className="login-details">
@@ -207,6 +146,12 @@ function Homepage() {
                     onClick={handleGuestCredentialsClick}
                   >
                     Guest Credentials
+                  </button>
+                  <button
+                    className="guest-credentials-button"
+                    onClick={handleAdminCredentialsClick}
+                  >
+                    Admin credentials
                   </button>
                 </div>
               </div>

@@ -17,11 +17,15 @@
   min-height: 5vh;
   min-width: 15vw;
   font-size: 1.2vw;
+  font-family: Poppins;
+  font-weight: 400;
 }
 .application-title {
   margin-left: -11%;
   font-size: 1.6vw;
   font-weight: 700;
+  font-family: Poppins;
+  
 }
 .user-notifications-profile {
   margin-right: 3%;

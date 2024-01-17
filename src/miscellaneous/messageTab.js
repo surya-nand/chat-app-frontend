@@ -16,7 +16,7 @@ const BASE_URL = "http://localhost:5000";
 
 const MessageTab = ({ messages }) => {
   const [clickedMessageId, setClickedMessageId] = useState(null);
-  const [handleReactionUpdated, setHandleReactionUpdated] = useState('')
+  const [handleReactionUpdated, setHandleReactionUpdated] = useState(false)
   const [isReactionContainerOpen, setIsReactionContainerOpen] = useState(false);
   const [messageReactions, setMessageReactions] = useState([]);
   const user = JSON.parse(localStorage.getItem("userInfo"));
@@ -47,7 +47,7 @@ const MessageTab = ({ messages }) => {
   };
 
   const handleReactionClick = async (reaction, messageId) => {
-    setHandleReactionUpdated('update')
+    setHandleReactionUpdated((prev) => !prev)
     toast.info("You reacted!");
     try {
       const config = {
@@ -64,6 +64,7 @@ const MessageTab = ({ messages }) => {
         },
         config
       );
+      console.log(response.data.updatedMessage)
       setIsReactionContainerOpen(false);
     } catch (error) {}
   };
