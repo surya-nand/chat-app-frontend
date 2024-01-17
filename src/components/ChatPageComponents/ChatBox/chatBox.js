@@ -10,7 +10,7 @@ import MessageTab from "../../../miscellaneous/messageTab";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://chat-app-ky2m.onrender.com";
 
 const ChatBox = () => {
   const { accessedChat, refreshChats, setRefreshChats } = useChat();

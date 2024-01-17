@@ -12,7 +12,7 @@ import ScrollableFeed from "react-scrollable-feed";
 import "./messageTab.modules.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://chat-app-ky2m.onrender.com";
 
 const MessageTab = ({ messages }) => {
   const [clickedMessageId, setClickedMessageId] = useState(null);

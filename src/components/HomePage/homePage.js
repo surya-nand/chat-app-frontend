@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://chat-app-ky2m.onrender.com";
 
 function Homepage() {
   const navigate = useNavigate();

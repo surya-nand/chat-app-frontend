@@ -8,7 +8,7 @@ import { useChat } from "../../../context/chatContext";
 import { getSender } from "../../../miscellaneous/chatLogics";
 import GroupChatModal from "../createGroupModal";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://chat-app-ky2m.onrender.com";
 
 const MyChats = () => {
   const { chats, setChats } = useChat();

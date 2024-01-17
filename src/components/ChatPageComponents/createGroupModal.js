@@ -18,7 +18,7 @@ import { useChat } from "../../context/chatContext";
 import GroupUserIcon from "../../miscellaneous/groupUserIcon";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://chat-app-ky2m.onrender.com";
 
 const GroupChatModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

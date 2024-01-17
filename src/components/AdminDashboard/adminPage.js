@@ -7,7 +7,7 @@ import Navbar from '../ChatPageComponents/Navbar/Navbar';
 import UserList from '../AdminPageComponents/userList';
 import CreateUser from '../AdminPageComponents/createUser';
 import { useChat } from '../../context/chatContext';
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://chat-app-ky2m.onrender.com";
 
 const AdminPage = () => {
   const [users, setUsers] = useState([])
